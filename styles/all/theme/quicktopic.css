@@ -1,0 +1,25 @@
+#qt_postform .panel {
+	padding: 8px;
+}
+#qt_postform #qt_expander {
+	float: right;
+	cursor: pointer;
+	line-height: 1.7em;
+}
+#qt_postform #qt_subject {
+	font-size: 1.1em;
+	width: 80%;
+}
+#qt_postform .submit-buttons {
+	margin: 0;
+	line-height: 2.3em;
+	color: gray;
+}
+#qt_postform select {
+	max-width: 350px;
+}
+@media (min-width: 700px) {
+	#qt_postform .submit-buttons {
+		text-align: left;
+	}
+}

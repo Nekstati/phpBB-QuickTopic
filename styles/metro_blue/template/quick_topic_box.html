@@ -1,0 +1,66 @@
+<form method="post" name="postform" action="{U_QT_ACTION}" id="qt_postform">
+	<div class="panel">
+		<fieldset class="fields1">
+			<span id="qt_expander" title="{L_EXPAND_VIEW}" {{ !QT_IS_COLLAPSED ? 'style="display: none"' : '' }}>▼</span>
+			<input type="text" name="subject" id="qt_subject" size="45" maxlength="124" class="inputbox" placeholder="{{ lang(QT_IS_COLLAPSED ? 'QT_NEW_TOPIC' : 'QT_NEW_TOPIC_TITLE') }}" autocomplete="off" />
+		</fieldset>
+
+		<div id="qt_expandable" {% if QT_IS_COLLAPSED %} style="display: none;" {% endif %}>
+			<fieldset class="fields1">
+				{% if S_BBCODE_ALLOWED %}
+					{% include 'posting_buttons.html' %}
+				{% else %}
+					<div style="height: 5px"></div>
+				{% endif %}
+				<div id="message-box" class="message-box">
+					<textarea name="message" class="inputbox" placeholder="{L_QT_NEW_TOPIC_TEXT}" style="height: {{ QT_TEXT_HEIGHT }}em"></textarea>
+				</div>
+			</fieldset>
+
+			<fieldset class="submit-buttons">
+				{S_FORM_TOKEN}
+				{QT_HIDDEN_FIELDS}
+				{% if !QT_FORUM_ID && S_DISPLAY_JUMPBOX %}
+					{L_SELECT_FORUM}
+					<select name="f">
+						{% set icon = (S_CONTENT_DIRECTION == 'rtl') ? '&#8626;' : '&#8627;' %}
+						{% for item in jumpbox_forums if item.FORUM_ID != -1 %}
+							<option {{ item.SELECTED }} value="{{ item.FORUM_ID }}">{% for z in item.level %}&nbsp; &nbsp; {% endfor %} {% if item.level %} {{ icon }} &nbsp; {% endif %} {item.FORUM_NAME}</option>
+						{% endfor %}
+					</select>&nbsp;
+				{% endif %}
+				<input type="submit" name="preview" value="{L_FULL_EDITOR}" class="button" />&nbsp;
+				<input type="submit" name="post" value="{L_QT_SUBMIT}" class="button" />&nbsp;
+			</fieldset>
+		</div>
+	</div>
+
+	<script type="module">
+		let a = Boolean({QT_IS_COLLAPSED});
+		let b = $('#qt_expandable');
+		let c = $('#qt_expander');
+		let d = $('#qt_subject');
+		c.add(d).click(function() {
+			if (b.is(':visible') && $(this).is(c) && a) {
+				b.hide('fast');
+				c.html('▼'); c.attr('title', '{{ lang('EXPAND_VIEW')|e }}'); d.attr('placeholder', '{{ lang('QT_NEW_TOPIC')|e }}');
+			}
+			else if (a) {
+				b.show('fast');
+				c.html('▲'); c.attr('title', '{{ lang('COLLAPSE_VIEW')|e }}'); d.attr('placeholder', '{{ lang('QT_NEW_TOPIC_TITLE')|e }}');
+				d.focus();
+			}
+		});
+		$('.action-bar.bar-top .button[href*="posting"]').click(function(event) {
+			event.preventDefault();
+			if (b.is(':visible') || !a) {
+				$('#qt_postform').submit();
+				return;
+			}
+			b.show('fast');
+			c.html('▲'); c.attr('title', '{{ lang('COLLAPSE_VIEW')|e }}'); d.attr('placeholder', '{{ lang('QT_NEW_TOPIC_TITLE')|e }}');
+			d.focus();
+			$(this).blur();
+		});
+	</script>
+</form>

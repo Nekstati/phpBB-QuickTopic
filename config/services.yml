@@ -1,0 +1,16 @@
+services:
+    nekstati.quicktopic.subscriber:
+        class: nekstati\quicktopic\event\subscriber
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.table_prefix%'
+        tags:
+            - { name: event.listener }

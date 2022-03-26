@@ -1,0 +1,56 @@
+{{ include('overall_header.html') }}
+
+<style>
+	.main a { text-decoration: underline dotted; }
+	.main dt span { opacity: 0.8; }
+	.main legend + p, .main hr + p { opacity: 0.8; line-height: normal; }
+	.main textarea { font-size: 1em; }
+	.main hr:last-child, .main hr + hr, .main legend + hr { display: none; } /* For a suggestion/explanation block containing only text. */
+	.main fieldset > dl:last-of-type { border-bottom-width: 0; }
+</style>
+
+<a id="maincontent"></a>
+
+<h1>{{ TITLE }}</h1>
+<p>{{ TITLE_EXP ?? '' }}</p>
+
+{% if ERROR_MSG %}
+	<div class="errorbox">
+		<!-- <h3>{L_ERROR}</h3> -->
+		<p>{ERROR_MSG}</p>
+	</div>
+{% endif %}
+
+<form method="post" action="{URL_ACTION}">
+	<fieldset>
+
+{% for o in OPTIONS %}
+
+	{%- if o.LEGEND and not loop.first %}
+		{% if PREV.APPEND %}<hr /><p>{PREV.APPEND}</p>{% endif %} {# Textual section below the config fields. #}
+		{% set PREV = o %}
+	</fieldset>
+	<fieldset>
+	{% endif %}
+
+	{%~ if o.LEGEND %}
+		<legend>{o.LEGEND}</legend>
+		{% if o.PREPEND %}<p>{o.PREPEND}</p><hr />{% endif %} {# Textual section above the config fields. #}
+	{% else %}
+		<dl>
+			<dt><label for="{o.KEY}">{o.TITLE}{L_COLON}</label> {% if o.EXPLAIN %}<br /><span>{o.EXPLAIN}</span>{% endif %} </dt>
+			<dd>{o.CONTENT}</dd>
+		</dl>
+	{% endif %}
+
+{% endfor %}
+
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+{{ include('overall_footer.html') }}
