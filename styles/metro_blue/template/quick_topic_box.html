@@ -24,7 +24,7 @@
 					{L_SELECT_FORUM}
 					<select name="f">
 						{% set icon = (S_CONTENT_DIRECTION == 'rtl') ? '&#8626;' : '&#8627;' %}
-						{% for item in jumpbox_forums if item.FORUM_ID != -1 %}
+						{% for item in jumpbox_forums if (item.FORUM_ID != -1 && !item.S_IS_CAT) %}
 							<option {{ item.SELECTED }} value="{{ item.FORUM_ID }}">{% for z in item.level %}&nbsp; &nbsp; {% endfor %} {% if item.level %} {{ icon }} &nbsp; {% endif %} {item.FORUM_NAME}</option>
 						{% endfor %}
 					</select>&nbsp;

@@ -1,3 +1,18 @@
 {% if QT_SHOW_ON_INDEX %}
 	{% include '@nekstati_quicktopic/quick_topic_box.html' %}
 {% endif %}
+
+{% if QT_SHOW_ON_INDEX && MCHAT_PAGE %}
+<script>
+{
+	let textareas = document.querySelectorAll('textarea[name="message"]');
+	for (let t of textareas) {
+		if (t.id == 'tags') continue;
+		t.addEventListener('focus', (e) => {
+			window.form_name = t.form.id;
+			window.text_name = t.name;
+		});
+	}
+}
+</script>
+{% endif %}
