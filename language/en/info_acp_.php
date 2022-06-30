@@ -23,6 +23,9 @@ $lang = array_merge($lang, [
 	'QUICKTOPIC_DEFAULT_FORUM_ID'		=> 'Default forum',
 	'QUICKTOPIC_DEFAULT_FORUM_ID_EXP'	=> 'When user submits new topic from the board index page, he must select a target forum. Here you can specify a forum which will be selected by default.',
 	'QUICKTOPIC_DEFAULT_FORUM_NONE'		=> '--- Not specified ---',
+	'QUICKTOPIC_BUTTON_IN_TOPIC'		=> 'Add “New topic” button inside topics',
+	'QUICKTOPIC_BUTTON_IN_TOPIC_EXP'	=> 'Add “New topic” button next to “Reply” button on the topic pages. <br />
+		<b>NB:</b> some phpBB styles already have this button, but most of them don’t.',
 
 	'QUICKTOPIC_LINES'					=> 'lines',
 ]);

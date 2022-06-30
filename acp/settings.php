@@ -46,6 +46,7 @@ class settings
 			'quicktopic_show_on_index'		=> ['default' => 1,		'validate' => 'bool',		'type' => 'radio:yes_no'],
 			'quicktopic_default_forum_id'	=> ['default' => 0,		'validate' => 'int:0',		'type' => 'custom:gen_forum_select'],
 			'quicktopic_text_height'		=> ['default' => 3,		'validate' => 'int:1:20',	'type' => 'number:1:20',	'append' => ' ' . $this->language->lang('QUICKTOPIC_LINES')],
+			'quicktopic_button_in_topic'	=> ['default' => 1,		'validate' => 'bool',		'type' => 'radio:yes_no'],
 
 			'ACP_SUBMIT_CHANGES',
 		];

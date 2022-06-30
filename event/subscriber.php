@@ -15,6 +15,7 @@ class subscriber implements \Symfony\Component\EventDispatcher\EventSubscriberIn
 			'core.user_setup'						=> 'user_setup',
 			'core.index_modify_page_title'			=> 'show_quick_topic_box',
 			'core.viewforum_generate_page_after'	=> 'show_quick_topic_box',
+			'core.viewtopic_modify_page_title'		=> 'viewtopic_show_new_topic_button',
 		];
 	}
 
@@ -122,5 +123,10 @@ class subscriber implements \Symfony\Component\EventDispatcher\EventSubscriberIn
 
 		if (!$forum_id)
 			make_jumpbox(append_sid("{$this->root_path}viewforum.php"), $this->config['quicktopic_default_forum_id'], false, 'f_post', true);
+	}
+
+	public function viewtopic_show_new_topic_button($event)
+	{
+		$this->template->assign_var('QT_SHOW_BUTTON_IN_TOPIC', $this->config['quicktopic_button_in_topic']);
 	}
 }

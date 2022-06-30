@@ -17,6 +17,7 @@ class v100 extends \phpbb\db\migration\migration
 			['config.add', ['quicktopic_text_height', 3]],
 			['config.add', ['quicktopic_show_on_index', 1]],
 			['config.add', ['quicktopic_default_forum_id', 0]],
+			['config.add', ['quicktopic_button_in_topic', 1]],
 			['module.add', ['acp', 'ACP_CAT_DOT_MODS', 'QUICKTOPIC_TITLE']],
 			['module.add', ['acp', 'QUICKTOPIC_TITLE', [
 				'module_basename'	=> '\nekstati\quicktopic\acp\a_module',

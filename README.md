@@ -1,8 +1,8 @@
-# phpBB Extension ‚Äî Quick topic box
+# phpBB Extension ó Quick topic box
 
 [Topic on phpbbguru.net](https://www.phpbbguru.net/community/viewtopic.php?t=51186)
 
-This phpBB extension allows you to quickly post new topics from the expandable form above the topiclist and forumlist. The form is collapsed/minimized by default and expands only when user clicks on it or on ‚ÄúNew topic‚Äù button.
+This phpBB extension allows you to quickly post new topics from the expandable form above the topiclist and forumlist. The form is collapsed/minimized by default and expands only when user clicks on it or on ìNew topicî button.
 
 ## Requirements
 
