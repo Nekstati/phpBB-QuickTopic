@@ -99,6 +99,8 @@ class subscriber implements \Symfony\Component\EventDispatcher\EventSubscriberIn
 		$s_bbcode		= $this->config['allow_bbcode'] && $this->user->optionget('bbcode') && (!$forum_id || $this->auth->acl_get('f_bbcode', $forum_id));
 		$s_notify		= $this->config['allow_topic_notify'] && $this->user->data['user_notify'];
 
+		$qt_hidden_fields = [];
+
 		// Originally we use checkboxes and check with isset(), so we only provide them if they would be checked
 		(!$s_bbcode)							? $qt_hidden_fields['disable_bbcode'] = 1		: true;
 		(!$s_smilies)							? $qt_hidden_fields['disable_smilies'] = 1		: true;
